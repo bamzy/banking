@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Plugin">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Plugin">
+        insert into plugin(id, pluginTemplateId, pluginValues,name) VALUES (#{id}, #{pluginTemplateId},
+        #{pluginValues},#{name});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from plugin
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="pluginIdEqual != null">
+                and pluginId = #{pluginIdEqual}
+            </if>
+            <if test="pluginIdLessThan != null">
+                and pluginId &lt;= #{pluginIdLessThan}
+            </if>
+            <if test="pluginIdGreaterThan != null">
+                and pluginId &gt;= #{pluginIdGreaterThan}
+            </if>
+            <if test="pluginIdLike != null">
+                and pluginId like #{pluginIdLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="pluginValuesEqual != null">
+                and pluginValues = #{pluginValuesEqual}
+            </if>
+            <if test="pluginValuesLessThan != null">
+                and pluginValues &lt;= #{pluginValuesLessThan}
+            </if>
+            <if test="pluginValuesGreaterThan != null">
+                and pluginValues &gt;= #{pluginValuesGreaterThan}
+            </if>
+            <if test="pluginValuesLike != null">
+                and pluginValues like #{pluginValuesLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Plugin">
+        select * from plugin where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from plugin where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from plugin;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Plugin" parameterType="hashmap">
+        select * from plugin
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="pluginIdEqual != null">
+                and pluginId = #{pluginIdEqual}
+            </if>
+            <if test="pluginIdLessThan != null">
+                and pluginId &lt;= #{pluginIdLessThan}
+            </if>
+            <if test="pluginIdGreaterThan != null">
+                and pluginId &gt;= #{pluginIdGreaterThan}
+            </if>
+            <if test="pluginIdLike != null">
+                and pluginId like #{pluginIdLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="pluginValuesEqual != null">
+                and pluginValues = #{pluginValuesEqual}
+            </if>
+            <if test="pluginValuesLessThan != null">
+                and pluginValues &lt;= #{pluginValuesLessThan}
+            </if>
+            <if test="pluginValuesGreaterThan != null">
+                and pluginValues &gt;= #{pluginValuesGreaterThan}
+            </if>
+            <if test="pluginValuesLike != null">
+                and pluginValues like #{pluginValuesLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <select id="listValues" resultType="ir.samatco.eft.tms.entity.Plugin">
+        select * from terminalgroup_pos where id = #{param};
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Plugin">
+        update plugin
+        <set>
+            <if test="update.pluginTemplateId">
+                pluginTemplateId = #{pluginTemplateId},
+            </if>
+            <if test="update.pluginValues">
+                pluginValues = #{pluginValues},
+            </if>
+            <if test="update.name">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+    <select id="listPlugin4TerminalNumber" resultType="ir.samatco.eft.tms.entity.Plugin" parameterType="long">
+        SELECT plugin.id AS id ,plugin.pluginTemplateId AS `pluginTemplateId` ,plugin.pluginValues AS `pluginValues` ,
+        plugin.name AS `name`
+        FROM `plugin`,terminalgroup_plugin
+        WHERE terminalGroupId = #{param} AND plugin.id=terminalgroup_plugin.pluginId;
+    </select>
+
+
+</mapper>

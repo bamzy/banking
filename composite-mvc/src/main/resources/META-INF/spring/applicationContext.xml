@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="ir.samatco.eft.tms.service.TmsService" id="tmsService" scope="prototype">
+        <property name="dbSqlSession" ref="modelDbSqlSession"/>
+        <property name="smsPanel" ref="smsPanel"/>
+        <property name="configProvider" ref="configProvider"/>
+        <!--<property title="senderAddress" value="${sender.address}"/>-->
+        <!--<property title="senderPort" value="${sender.port}"/>-->
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+
+        <!--&lt;!&ndash; setting maximum upload size &ndash;&gt;-->
+        <!--<property name="maxUploadSize" value="99000000"/>-->
+
+    <!--</bean>-->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="http://87.107.121.54/post/Send.asmx"/>
+    </bean>
+    <bean class="com.github.mustachejava.DefaultMustacheFactory" id="mustacheFactory"/>
+    <bean class="ir.samatco.eft.common.sms.SmsPanel" id="smsPanel">
+        <constructor-arg index="0" ref="mustacheFactory"/>
+        <constructor-arg index="1" ref="webServiceTemplate"/>
+    </bean>
+    <bean class="ir.samatco.eft.config.CuratorConfig" id="configProvider">
+        <constructor-arg index="0" value="${zookeeper.server.address}"/>
+    </bean>
+
+    <bean class="ir.samatco.eft.discovery.ServiceDiscoveryClient"
+          id="serviceDiscoveryClient">
+        <constructor-arg index="0" value="${zookeeper.server.address}"/>
+        <constructor-arg index="1" ref="tmsServiceDetails"/>
+    </bean>
+    <bean class="ir.samatco.eft.discovery.ServiceDetails"
+          id="tmsServiceDetails">
+        <property name="hostnameVar" value="${service.registered.name}"/>
+        <property name="logFilePathVar" value="/var/lib/tomcat7/logs/catalina.out"/>
+        <property name="portList">
+            <list>
+                <value>8080</value>
+            </list>
+        </property>
+        <property name="urlVar" value=""/>
+        <property name="serviceNameVar" value="TerminalManagementServiceUi"/>
+    </bean>
+
+</beans>

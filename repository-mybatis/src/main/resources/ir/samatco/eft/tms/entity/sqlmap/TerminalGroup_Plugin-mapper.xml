@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TerminalGroup_Plugin">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin">
+        insert into terminalgroup_plugin(id , terminalGroupId, pluginId) VALUES (#{id},#{terminalGroupId}, #{pluginId});
+    </insert>
+
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin">
+        select * from terminalgroup_plugin where pluginGroupId = #{param};
+    </select>
+    <select id="ifAlreadyExist" parameterType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin" resultType="long">
+        select COUNT(*) from terminalgroup_plugin where terminalGroupId = #{terminalGroupId} AND pluginId=#{pluginId};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from terminalgroup_plugin where id = #{param};
+    </delete>
+
+    <select id="list" resultType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin">
+        select * from terminalgroup_plugin
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="terminalGroupIdEqual != null">
+                and terminalGroupId = #{terminalGroupIdEqual}
+            </if>
+            <if test="terminalGroupIdLessThan != null">
+                and terminalGroupId &lt;= #{terminalGroupIdLessThan}
+            </if>
+            <if test="terminalGroupIdGreaterThan != null">
+                and terminalGroupId &gt;= #{terminalGroupIdGreaterThan}
+            </if>
+            <if test="terminalGroupIdLike != null">
+                and terminalGroupId like #{terminalGroupIdLike}
+            </if>
+
+            <if test="pluginIdEqual != null">
+                and pluginId = #{pluginIdEqual}
+            </if>
+            <if test="pluginIdLessThan != null">
+                and pluginId &lt;= #{pluginIdLessThan}
+            </if>
+            <if test="pluginIdGreaterThan != null">
+                and pluginId &gt;= #{pluginIdGreaterThan}
+            </if>
+            <if test="pluginIdLike != null">
+                and pluginId like #{pluginIdLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from terminalgroup_plugin
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="terminalGroupIdEqual != null">
+                and terminalGroupId = #{terminalGroupIdEqual}
+            </if>
+            <if test="terminalGroupIdLessThan != null">
+                and terminalGroupId &lt;= #{terminalGroupIdLessThan}
+            </if>
+            <if test="terminalGroupIdGreaterThan != null">
+                and terminalGroupId &gt;= #{terminalGroupIdGreaterThan}
+            </if>
+            <if test="terminalGroupIdLike != null">
+                and terminalGroupId like #{terminalGroupIdLike}
+            </if>
+
+            <if test="pluginIdEqual != null">
+                and pluginId = #{pluginIdEqual}
+            </if>
+            <if test="pluginIdLessThan != null">
+                and pluginId &lt;= #{pluginIdLessThan}
+            </if>
+            <if test="pluginIdGreaterThan != null">
+                and pluginId &gt;= #{pluginIdGreaterThan}
+            </if>
+            <if test="pluginIdLike != null">
+                and pluginId like #{pluginIdLike}
+            </if>
+        </where>
+    </select>
+    <select id="listValues" parameterType="long" resultType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin">
+        SELECT plugin.name AS `pluginName`, terminalgroup_plugin.id AS id
+        FROM terminalgroup_plugin,plugin
+        WHERE terminalgroupId = #{param}
+        AND terminalgroup_plugin.pluginId = plugin.id
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from terminalgroup_plugin;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.TerminalGroup_Plugin">
+        update terminalgroup_plugin
+        <set>
+            <if test="update.terminalGroupId">
+                terminalGroupId = #{terminalGroupId},
+            </if>
+            <if test="update.pluginId">
+                pluginId = #{pluginId},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

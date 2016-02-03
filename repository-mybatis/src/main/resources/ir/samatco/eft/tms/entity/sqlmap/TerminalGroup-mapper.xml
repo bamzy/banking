@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TerminalGroup">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.TerminalGroup">
+        insert into terminalgroup(id, name, active,dailyMessage,groupId,engineId) VALUES (#{id},
+        #{name}, #{active},#{dailyMessage},#{groupId},#{engineId});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from terminalgroup
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="engineIdEqual != null">
+                and engineId = #{engineIdEqual}
+            </if>
+            <if test="engineIdLessThan != null">
+                and engineId &lt;= #{engineIdLessThan}
+            </if>
+            <if test="engineIdGreaterThan != null">
+                and engineId &gt;= #{engineIdGreaterThan}
+            </if>
+            <if test="engineIdLike != null">
+                and engineId like #{engineIdLike}
+            </if>
+
+            <if test="groupIdEqual != null">
+                and groupId = #{groupIdEqual}
+            </if>
+            <if test="groupIdLessThan != null">
+                and groupId &lt;= #{groupIdLessThan}
+            </if>
+            <if test="groupIdGreaterThan != null">
+                and groupId &gt;= #{groupIdGreaterThan}
+            </if>
+            <if test="groupIdLike != null">
+                and groupId like #{groupIdLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="activeEqual != null">
+                and active = #{activeEqual}
+            </if>
+            <if test="activeLessThan != null">
+                and active &lt;= #{activeLessThan}
+            </if>
+            <if test="activeGreaterThan != null">
+                and active &gt;= #{activeGreaterThan}
+            </if>
+            <if test="activeLike != null">
+                and active like #{activeLike}
+            </if>
+
+            <if test="dailyMessageEqual != null">
+                and dailyMessage = #{dailyMessageEqual}
+            </if>
+            <if test="dailyMessageLessThan != null">
+                and dailyMessage &lt;= #{dailyMessageLessThan}
+            </if>
+            <if test="dailyMessageGreaterThan != null">
+                and dailyMessage &gt;= #{dailyMessageGreaterThan}
+            </if>
+            <if test="dailyMessageLike != null">
+                and dailyMessage like #{dailyMessageLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.TerminalGroup">
+        select * from terminalgroup where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from terminalgroup where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from terminalgroup;
+    </select>
+    <select id="fetchParentGroupId" parameterType="long" resultType="long">
+        select groupId from terminalgroup where id =#{param} ;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.TerminalGroup" parameterType="hashmap">
+        select * from terminalgroup
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="engineIdEqual != null">
+                and engineId = #{engineIdEqual}
+            </if>
+            <if test="engineIdLessThan != null">
+                and engineId &lt;= #{engineIdLessThan}
+            </if>
+            <if test="engineIdGreaterThan != null">
+                and engineId &gt;= #{engineIdGreaterThan}
+            </if>
+            <if test="engineIdLike != null">
+                and engineId like #{engineIdLike}
+            </if>
+
+            <if test="groupIdEqual != null">
+                and groupId = #{groupIdEqual}
+            </if>
+            <if test="groupIdLessThan != null">
+                and groupId &lt;= #{groupIdLessThan}
+            </if>
+            <if test="groupIdGreaterThan != null">
+                and groupId &gt;= #{groupIdGreaterThan}
+            </if>
+            <if test="groupIdLike != null">
+                and groupId like #{groupIdLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="activeEqual != null">
+                and active = #{activeEqual}
+            </if>
+            <if test="activeLessThan != null">
+                and active &lt;= #{activeLessThan}
+            </if>
+            <if test="activeGreaterThan != null">
+                and active &gt;= #{activeGreaterThan}
+            </if>
+            <if test="activeLike != null">
+                and active like #{activeLike}
+            </if>
+
+            <if test="dailyMessageEqual != null">
+                and dailyMessage = #{dailyMessageEqual}
+            </if>
+            <if test="dailyMessageLessThan != null">
+                and dailyMessage &lt;= #{dailyMessageLessThan}
+            </if>
+            <if test="dailyMessageGreaterThan != null">
+                and dailyMessage &gt;= #{dailyMessageGreaterThan}
+            </if>
+            <if test="dailyMessageLike != null">
+                and dailyMessage like #{dailyMessageLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.TerminalGroup">
+        update terminalgroup
+        <set>
+            <if test="update.name">
+                name = #{name},
+            </if>
+            <if test="update.active">
+                active = #{active},
+            </if>
+            <if test="update.dailyMessage">
+                dailyMessage = #{dailyMessage},
+            </if>
+            <if test="update.groupId">
+                groupId = #{groupId},
+            </if>
+            <if test="update.engineId">
+                engineId = #{engineId},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+    <select id="fetchEngineId" resultType="long" parameterType="long">
+        select engineId from terminalgroup where id= #{param}
+    </select>
+    <select id="countCompatibilityRecords4PluginTemplateEngine" parameterType="ir.samatco.eft.tms.entity.Engine_Plugin"
+            resultType="long">
+        SELECT COUNT(*) FROM plugin,engine_plugintemplate where plugin.id = #{pluginId}
+        AND plugin.pluginTemplateId = engine_plugintemplate.pluginTemplateId
+        AND engine_plugintemplate.engineId = #{engineId};
+    </select>
+
+</mapper>

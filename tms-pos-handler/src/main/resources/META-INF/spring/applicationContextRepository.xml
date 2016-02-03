@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder order="1" ignore-unresolvable="true" location="classpath:settings.properties"/>
+
+    <bean id="modelDbSqlSession" class="ir.samatco.eft.common.repository.DbSqlSessionMyBatis">
+        <property name="sqlSession" ref="modelSqlSession"/>
+    </bean>
+    <bean id="modelSqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="modelSqlSessionFactory"/>
+    </bean>
+    <bean id="modelDatasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${model.jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${model.jdbc.url}"/>
+        <property name="user" value="${model.jdbc.username}"/>
+        <property name="password" value="${model.jdbc.password}"/>
+        <property name="acquireIncrement" value="10"/>
+        <property name="idleConnectionTestPeriod" value="60"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="maxStatements" value="50"/>
+        <property name="minPoolSize" value="5"/>
+    </bean>
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="modelSqlSessionFactory">
+        <property name="dataSource" ref="modelDatasource"/>
+        <property name="mapperLocations" value="classpath*:ir/samatco/eft/tms/entity/sqlmap/*-mapper.xml"/>
+    </bean>
+</beans>

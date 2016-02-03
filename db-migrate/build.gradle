@@ -1,0 +1,4 @@
+dependencies {
+    compile 'org.flywaydb:flyway-core:3.2.1'
+}
+apply from: "$rootDir/gradle/migrate.gradle"

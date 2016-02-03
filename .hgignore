@@ -1,0 +1,9 @@
+syntax: glob
+target/*
+build/*
+.idea/*
+.gradle/*
+classes/*
+*.iml
+*.iws
+*.ipr

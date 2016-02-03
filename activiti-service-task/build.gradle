@@ -1,0 +1,11 @@
+dependencies {
+    compile(group: 'ir.samatco.eft', name: 'eft-mvc-base', version: '1.0.0-1') {
+        changing = true
+    }
+    compile group: 'org.activiti', name: 'activiti-engine', version: '5.15.1'
+}
+
+task createZipJars(type: Zip) {
+    from configurations.runtime.allArtifacts.files
+    from configurations.runtime
+}

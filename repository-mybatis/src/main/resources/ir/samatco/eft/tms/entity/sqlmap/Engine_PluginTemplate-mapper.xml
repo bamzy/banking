@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Engine_PluginTemplate">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Engine_PluginTemplate">
+        insert into engine_plugintemplate(id,engineId,pluginTemplateId) VALUES
+        (#{id},#{engineId},#{pluginTemplateId});
+    </insert>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Engine_PluginTemplate">
+        select * from engine_plugintemplate where id= #{param};
+    </select>
+    <select id="fetchEngine_PluginTemplateByEngineId" parameterType="long"
+            resultType="ir.samatco.eft.tms.entity.Engine_PluginTemplate">
+        select plugintemplate.name AS pluginTemplateName , engine_plugintemplate.engineId AS engineId , engine_plugintemplate.pluginTemplateId AS pluginTemplateId ,  engine_plugintemplate.id as id
+        from plugintemplate,engine_plugintemplate
+        where
+        plugintemplate.id = engine_plugintemplate.pluginTemplateId AND
+        engine_plugintemplate.engineId= #{param};
+    </select>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from engine_plugintemplate
+        <where>
+            <if test="engineIdEqual != null">
+                and engineId = #{engineIdEqual}
+            </if>
+            <if test="engineIdLessThan != null">
+                and engineId &lt;= #{engineIdLessThan}
+            </if>
+            <if test="engineIdGreaterThan != null">
+                and engineId &gt;= #{engineIdGreaterThan}
+            </if>
+            <if test="engineIdLike != null">
+                and engineId like #{engineIdLike}
+            </if>
+
+            <if test="pluginTemplateIdEqual != null">
+                and pluginTemplateId = #{pluginTemplateIdEqual}
+            </if>
+            <if test="pluginTemplateIdLessThan != null">
+                and pluginTemplateId &lt;= #{pluginTemplateIdLessThan}
+            </if>
+            <if test="pluginTemplateIdGreaterThan != null">
+                and pluginTemplateId &gt;= #{pluginTemplateIdGreaterThan}
+            </if>
+            <if test="pluginTemplateIdLike != null">
+                and pluginTemplateId like #{pluginTemplateIdLike}
+            </if>
+        </where>
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Engine_PluginTemplate"
+            parameterType="hashmap">
+        select * from engine_plugintemplate
+        <where>
+            <if test="engineIdEqual != null">
+                and engineId = #{engineIdEqual}
+            </if>
+            <if test="engineIdLessThan != null">
+                and engineId &lt;= #{engineIdLessThan}
+            </if>
+            <if test="engineIdGreaterThan != null">
+                and engineId &gt;= #{engineIdGreaterThan}
+            </if>
+            <if test="engineIdLike != null">
+                and engineId like #{engineIdLike}
+            </if>
+
+            <if test="pluginTemplateIdEqual != null">
+                and pluginTemplateId = #{pluginTemplateIdEqual}
+            </if>
+            <if test="pluginTemplateIdLessThan != null">
+                and pluginTemplateId &lt;= #{pluginTemplateIdLessThan}
+            </if>
+            <if test="pluginTemplateIdGreaterThan != null">
+                and pluginTemplateId &gt;= #{pluginTemplateIdGreaterThan}
+            </if>
+            <if test="pluginTemplateIdLike != null">
+                and pluginTemplateId like #{pluginTemplateIdLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+
+
+    <delete id="delete" parameterType="long">
+        delete from engine_plugintemplate where id = #{param};
+    </delete>
+    <select id="ifAlreadyExist" parameterType="ir.samatco.eft.tms.entity.Engine_PluginTemplate" resultType="long">
+        select COUNT(*) from engine_plugintemplate where pluginTemplateId = #{pluginTemplateId} AND
+        engineId=#{engineId};
+    </select>
+
+    <select id="previouslyExistCompatibleRecords4EnginePlugin"
+            parameterType="ir.samatco.eft.tms.entity.Engine_PluginTemplate" resultType="long">
+        select COUNT(*) from `plugin`,engine_plugintemplate,terminalgroup_plugin,terminalgroup where
+        plugin.pluginTemplateId = #{pluginTemplateId}
+        AND plugin.id = terminalgroup_plugin.pluginId
+        AND terminalgroup.id=terminalgroup_plugin.terminalGroupId
+        AND terminalgroup.engineId = #{engineId};
+    </select>
+
+    <select id="getMaxId" resultType="long">
+        select max(id) from engine_plugintemplate;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Engine_PluginTemplate">
+        update engine_plugintemplate
+        <set>
+            <if test="update.engineId">
+                engineId = #{engineId},
+            </if>
+            <if test="update.pluginTemplateId">
+                pluginTemplateId = #{pluginTemplateId},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

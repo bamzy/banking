@@ -1,0 +1,16 @@
+task migrateTar(type: Tar) {
+    baseName = project.name
+    compression 'gzip'
+    extension 'tar.gz'
+    destinationDir = "$buildDir/distributions" as File
+
+    from('src/main/resources/db/conf') {
+        into('migration/conf')
+    }
+    from('src/main/resources/db/migration') {
+        into('migration/sql')
+    }
+    from(jar.outputs.files) {
+        into('migration/jars')
+    }
+}

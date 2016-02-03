@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="ir.samatco.eft.config.CuratorConfig" id="configProvider">
+        <constructor-arg index="0" value="${zookeeper.server.address}"/>
+    </bean>
+
+    <bean class="ir.samatco.eft.tms.servicers.LogonServicer" id="logonServicer" scope="prototype">
+        <property name="dbSqlSession" ref="modelDbSqlSession"></property>
+    </bean>
+
+    <bean class="ir.samatco.eft.tms.servicers.WhatsupServicer" id="whatsupServicer" scope="prototype">
+        <property name="dbSqlSession" ref="modelDbSqlSession"></property>
+    </bean>
+
+    <bean class="ir.samatco.eft.tms.servicers.RequestServicer" id="requestServicer" scope="prototype">
+        <property name="dbSqlSession" ref="modelDbSqlSession"></property>
+    </bean>
+
+    <bean class="ir.samatco.eft.tms.service.ProjectRepository" id="projectRepository" scope="singleton"
+          lazy-init="false">
+        <property name="xmlCodec" ref="XmlconverterBean"/>
+        <property name="rawCodec" ref="RawconverterBean"/>
+        <property name="logonServicerObjectFactory">
+            <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                <property name="targetBeanName">
+                    <idref bean="logonServicer"></idref>
+                </property>
+            </bean>
+        </property>
+        <property name="whatsupServicerObjectFactory">
+            <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                <property name="targetBeanName">
+                    <idref bean="whatsupServicer"></idref>
+                </property>
+            </bean>
+        </property>
+        <property name="requestServicerObjectFactory">
+            <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                <property name="targetBeanName">
+                    <idref bean="requestServicer"></idref>
+                </property>
+            </bean>
+        </property>
+    </bean>
+</beans>

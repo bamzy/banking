@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CharValue">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.CharValue">
+        insert into charvalue(id, name, value,accessId) VALUES (#{id}, #{name},#{value},#{accessId});
+    </insert>
+    <select id="customList" parameterType="ir.samatco.eft.tms.entity.AccessValue"
+            resultType="ir.samatco.eft.tms.entity.CharValue">
+        select * from charvalue where accessId = #{id};
+    </select>
+    <select id="list" parameterType="long" resultType="ir.samatco.eft.tms.entity.CharValue">
+        select * from charvalue where accessId = #{param};
+    </select>
+
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.CharValue">
+        select * from charvalue where id = #{param};
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from charvalue;
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from charvalue where id = #{param};
+    </delete>
+
+
+</mapper>

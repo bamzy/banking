@@ -1,0 +1,29 @@
+description = ''
+
+dependencies {
+
+    //compile project(':network')
+    compile project(':repository-mybatis')
+    compile project(':event-core')
+    compile project(':composite-mvc')
+
+    compile group: 'io.netty', name: 'netty', version: '3.6.4.Final'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.0-beta9'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.0-beta9'
+    compile group: 'com.thoughtworks.xstream', name: 'xstream', version: '1.4.2'
+    compile group: 'org.springframework', name: 'spring-oxm', version: '3.2.3.RELEASE'
+    compile(group: 'ir.samatco.eft', name: 'eft-config', version: '1.0.0-SNAPSHOT') {
+        changing = true
+    }
+    compile group: 'com.netflix.curator', name: 'curator-framework', version: '1.3.3'
+    compile group: 'org.apache.curator', name: 'curator-x-discovery', version: '2.5.0'
+
+}
+apply plugin: "application"
+mainClassName = "ir.samatco.eft.tms.pos.TmsPosServer"
+
+/**
+ * deploying artifacts to nexus
+ */
+
+apply from: "$rootDir/gradle/deploy.gradle"

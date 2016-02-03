@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Engine">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Engine">
+        insert into engine(id,name,description,version,data,checksum,dataLength) VALUES
+        (#{id},#{name},#{description},#{version},#{data},#{checksum},#{dataLength});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from engine
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+            <if test="dataLengthEqual != null">
+                and dataLength = #{dataLengthEqual}
+            </if>
+            <if test="dataLengthLessThan != null">
+                and dataLength &lt;= #{dataLengthLessThan}
+            </if>
+            <if test="dataLengthGreaterThan != null">
+                and dataLength &gt;= #{dataLengthGreaterThan}
+            </if>
+            <if test="dataLengthLike != null">
+                and dataLength like #{dataLengthLike}
+            </if>
+        </where>
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from engine where id = #{id}
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from engine;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Engine" parameterType="hashmap">
+        select * from engine
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+            <if test="dataLengthEqual != null">
+                and dataLength = #{dataLengthEqual}
+            </if>
+            <if test="dataLengthLessThan != null">
+                and dataLength &lt;= #{dataLengthLessThan}
+            </if>
+            <if test="dataLengthGreaterThan != null">
+                and dataLength &gt;= #{dataLengthGreaterThan}
+            </if>
+            <if test="dataLengthLike != null">
+                and dataLength like #{dataLengthLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Engine">
+        select * from engine where id = #{param};
+    </select>
+
+
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Engine">
+        update engine
+        <set>
+            <if test="update.name">
+                name = #{name},
+            </if>
+            <if test="update.description">
+                description = #{description},
+            </if>
+            <if test="update.version">
+                version = #{version},
+            </if>
+            <if test="update.data">
+                data = #{data},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

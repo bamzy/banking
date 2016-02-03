@@ -1,0 +1,10 @@
+rootProject.name = 'tms'
+include ':event-core', ':repository-mybatis', ':composite-mvc', ':network', 'tester',
+        ':activiti-service-task', ':tms-pos-handler', 'db-migrate'
+
+project(':event-core').projectDir = "$rootDir/event-core" as File
+project(':repository-mybatis').projectDir = "$rootDir/repository-mybatis" as File
+project(':composite-mvc').projectDir = "$rootDir/composite-mvc" as File
+project(':tms-pos-handler').projectDir = "$rootDir/tms-pos-handler" as File
+project(':tester').projectDir = "$rootDir/tester" as File
+project(':activiti-service-task').projectDir = "$rootDir/activiti-service-task" as File

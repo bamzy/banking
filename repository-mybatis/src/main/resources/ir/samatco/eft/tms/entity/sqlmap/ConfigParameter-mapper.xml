@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ConfigParameter">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.ConfigParameter">
+        insert into configparameter (id,version, availability, configName, configValue) VALUES (#{id},#{version},
+        #{availability}, #{configName}, #{configValue});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from configparameter
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+            <if test="availabilityEqual != null">
+                and availability = #{availabilityEqual}
+            </if>
+            <if test="availabilityLessThan != null">
+                and availability &lt;= #{availabilityLessThan}
+            </if>
+            <if test="availabilityGreaterThan != null">
+                and availability &gt;= #{availabilityGreaterThan}
+            </if>
+            <if test="availabilityLike != null">
+                and availability like #{availabilityLike}
+            </if>
+
+            <if test="configNameEqual != null">
+                and configName = #{configNameEqual}
+            </if>
+            <if test="configNameLessThan != null">
+                and configName &lt;= #{configNameLessThan}
+            </if>
+            <if test="configNameGreaterThan != null">
+                and configName &gt;= #{configNameGreaterThan}
+            </if>
+            <if test="configNameLike != null">
+                and configName like #{configNameLike}
+            </if>
+
+            <if test="configValueEqual != null">
+                and configValue = #{configValueEqual}
+            </if>
+            <if test="configValueLessThan != null">
+                and configValue &lt;= #{configValueEqual}
+            </if>
+            <if test="configValueGreaterThan != null">
+                and configValue &gt;= #{configValueEqual}
+            </if>
+            <if test="configValueLike != null">
+                and configValue like #{configValueEqual}
+            </if>
+        </where>
+    </select>
+    <select id="fetchByName" parameterType="long" resultType="ir.samatco.eft.tms.entity.ConfigParameter">
+        select * from configparameter where configName= #{param};
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.ConfigParameter">
+        select * from configparameter where id= #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from configparameter where id = #{param};
+    </delete>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.ConfigParameter" parameterType="hashmap">
+        select * from configparameter
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+            <if test="availabilityEqual != null">
+                and availability = #{availabilityEqual}
+            </if>
+            <if test="availabilityLessThan != null">
+                and availability &lt;= #{availabilityLessThan}
+            </if>
+            <if test="availabilityGreaterThan != null">
+                and availability &gt;= #{availabilityGreaterThan}
+            </if>
+            <if test="availabilityLike != null">
+                and availability like #{availabilityLike}
+            </if>
+
+            <if test="configNameEqual != null">
+                and configName = #{configNameEqual}
+            </if>
+            <if test="configNameLessThan != null">
+                and configName &lt;= #{configNameLessThan}
+            </if>
+            <if test="configNameGreaterThan != null">
+                and configName &gt;= #{configNameGreaterThan}
+            </if>
+            <if test="configNameLike != null">
+                and configName like #{configNameLike}
+            </if>
+
+            <if test="configValueEqual != null">
+                and configValue = #{configValueEqual}
+            </if>
+            <if test="configValueLessThan != null">
+                and configValue &lt;= #{configValueEqual}
+            </if>
+            <if test="configValueGreaterThan != null">
+                and configValue &gt;= #{configValueEqual}
+            </if>
+            <if test="configValueLike != null">
+                and configValue like #{configValueEqual}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from configparameter;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.ConfigParameter">
+        update configparameter
+        <set>
+            <if test="update.version">
+                version = #{version},
+            </if>
+            <if test="update.availability">
+                availability = #{availability},
+            </if>
+            <if test="update.configName">
+                configName = #{configName},
+            </if>
+            <if test="update.configValue">
+                configValue = #{configValue},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

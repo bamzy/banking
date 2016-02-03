@@ -1,0 +1,59 @@
+ext {
+    mvc_projects = [project(':composite-mvc')]
+    deployable_projects = [project(':composite-mvc'), project(':db-migrate')]
+    jettyVersion = "8.1.12.v20130726"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5'
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'java'
+
+    group = 'ir.samatco.eft.tms'
+    version = "1.0.0"
+    apply from: "$rootDir/gradle/ci.gradle"
+    ext {
+        springVersion = '4.1.6.RELEASE'
+        springBootVersion = '1.2.4.RELEASE'
+        springSecurityVersion = '4.0.1.RELEASE'
+    }
+
+    configurations {
+//        runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
+        compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+
+    if (project in deployable_projects) {
+        apply from: "$rootDir/gradle/deploy.gradle"
+    }
+
+    if (project in mvc_projects) {
+        apply plugin: 'war'
+        apply plugin: 'jetty'
+        jettyRun.contextPath = ''
+
+
+    }
+
+}
+
+
+
+

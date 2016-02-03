@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ConnectionType">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.ConnectionType">
+        insert into connectiontype(id, configName) VALUES (#{id}, #{configName});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from connectiontype
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="configNameEqual != null">
+                and configName = #{configNameEqual}
+            </if>
+            <if test="configNameLessThan != null">
+                and configName &lt;= #{configNameLessThan}
+            </if>
+            <if test="configNameGreaterThan != null">
+                and configName &gt;= #{configNameGreaterThan}
+            </if>
+            <if test="configNameLike != null">
+                and configName like #{configNameLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.ConnectionType">
+        select * from connectiontype where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from connectiontype where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from connectiontype;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.ConnectionType" parameterType="hashmap">
+        select * from connectiontype
+
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="configNameEqual != null">
+                and configName = #{configNameEqual}
+            </if>
+            <if test="configNameLessThan != null">
+                and configName &lt;= #{configNameLessThan}
+            </if>
+            <if test="configNameGreaterThan != null">
+                and configName &gt;= #{configNameGreaterThan}
+            </if>
+            <if test="configNameLike != null">
+                and configName like #{configNameLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.ConnectionType">
+        update connectiontype
+        <set>
+            <if test="update.name">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

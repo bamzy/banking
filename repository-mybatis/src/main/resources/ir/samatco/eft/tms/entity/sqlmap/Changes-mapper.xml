@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Changes">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Changes">
+        insert into changes(id, timeStamp, tableName,actionType,description,recordId,security_activeUserPath) VALUES
+        (#{id},
+        #{timeStamp},#{tableName},#{actionType},#{description},#{recordId},#{security_activeUserPath});
+    </insert>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Changes">
+    </update>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from changes
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="tableNameEqual != null">
+                and tableName = #{tableNameEqual}
+            </if>
+            <if test="tableNameLessThan != null">
+                and tableName &lt;= #{tableNameLessThan}
+            </if>
+            <if test="tableNameGreaterThan != null">
+                and tableName &gt;= #{tableNameGreaterThan}
+            </if>
+            <if test="tableNameLike != null">
+                and tableName like #{tableNameLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+
+            <if test="recordIdEqual != null">
+                and recordId = #{recordIdEqual}
+            </if>
+            <if test="recordIdLessThan != null">
+                and recordId &lt;= #{recordIdLessThan}
+            </if>
+            <if test="recordIdGreaterThan != null">
+                and recordId &gt;= #{recordIdGreaterThan}
+            </if>
+            <if test="recordIdLike != null">
+                and recordId like #{recordIdLike}
+            </if>
+
+            <if test="actionTypeEqual != null">
+                and actionType = #{actionTypeEqual}
+            </if>
+            <if test="actionTypeLessThan != null">
+                and actionType &lt;= #{actionTypeLessThan}
+            </if>
+            <if test="actionTypeGreaterThan != null">
+                and actionType &gt;= #{actionTypeGreaterThan}
+            </if>
+            <if test="actionTypeLike != null">
+                and actionType like #{actionTypeLike}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampLike}
+            </if>
+
+            <if test="tableNameEqual != null">
+                and tableName = #{tableNameEqual}
+            </if>
+            <if test="tableNameLessThan != null">
+                and tableName &lt;= #{tableNameLessThan}
+            </if>
+            <if test="tableNameGreaterThan != null">
+                and tableName &gt;= #{tableNameGreaterThan}
+            </if>
+            <if test="tableNameLike != null">
+                and tableName like #{tableNameLike}
+            </if>
+
+            <if test="actionTypeEqual != null">
+                and actionType = #{actionTypeEqual}
+            </if>
+            <if test="actionTypeLessThan != null">
+                and actionType &lt;= #{actionTypeLessThan}
+            </if>
+            <if test="actionTypeGreaterThan != null">
+                and actionType &gt;= #{actionTypeGreaterThan}
+            </if>
+            <if test="actionTypeLike != null">
+                and actionType like #{actionTypeLike}
+            </if>
+
+            <if test="recordIdEqual != null">
+                and recordId = #{recordIdEqual}
+            </if>
+            <if test="recordIdLessThan != null">
+                and recordId &lt;= #{recordIdLessThan}
+            </if>
+            <if test="recordIdGreaterThan != null">
+                and recordId &gt;= #{recordIdGreaterThan}
+            </if>
+            <if test="recordIdLike != null">
+                and recordId like #{recordIdLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Changes">
+        select * from changes where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from changes where id = #{param};
+    </delete>
+    <select id="fetchTableChanges" parameterType="ir.samatco.eft.tms.entity.Changes"
+            resultType="ir.samatco.eft.tms.entity.Changes">
+        select * from changes where tableName = #{tableName};
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Changes" parameterType="hashmap">
+        select * from changes
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="tableNameEqual != null">
+                and tableName = #{tableNameEqual}
+            </if>
+
+            <if test="tableNameLessThan != null">
+                and tableName &lt;= #{tableNameLessThan}
+            </if>
+            <if test="tableNameGreaterThan != null">
+                and tableName &gt;= #{tableNameGreaterThan}
+            </if>
+            <if test="tableNameLike != null">
+                and tableName like #{tableNameLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+
+            <if test="recordIdEqual != null">
+                and recordId = #{recordIdEqual}
+            </if>
+            <if test="recordIdLessThan != null">
+                and recordId &lt;= #{recordIdLessThan}
+            </if>
+            <if test="recordIdGreaterThan != null">
+                and recordId &gt;= #{recordIdGreaterThan}
+            </if>
+            <if test="recordIdLike != null">
+                and recordId like #{recordIdLike}
+            </if>
+
+            <if test="actionTypeEqual != null">
+                and actionType = #{actionTypeEqual}
+            </if>
+            <if test="actionTypeLessThan != null">
+                and actionType &lt;= #{actionTypeLessThan}
+            </if>
+            <if test="actionTypeGreaterThan != null">
+                and actionType &gt;= #{actionTypeGreaterThan}
+            </if>
+            <if test="actionTypeLike != null">
+                and actionType like #{actionTypeLike}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampLike}
+            </if>
+
+            <if test="tableNameEqual != null">
+                and tableName = #{tableNameEqual}
+            </if>
+            <if test="tableNameLessThan != null">
+                and tableName &lt;= #{tableNameLessThan}
+            </if>
+            <if test="tableNameGreaterThan != null">
+                and tableName &gt;= #{tableNameGreaterThan}
+            </if>
+            <if test="tableNameLike != null">
+                and tableName like #{tableNameLike}
+            </if>
+
+            <if test="actionTypeEqual != null">
+                and actionType = #{actionTypeEqual}
+            </if>
+            <if test="actionTypeLessThan != null">
+                and actionType &lt;= #{actionTypeLessThan}
+            </if>
+            <if test="actionTypeGreaterThan != null">
+                and actionType &gt;= #{actionTypeGreaterThan}
+            </if>
+            <if test="actionTypeLike != null">
+                and actionType like #{actionTypeLike}
+            </if>
+
+            <if test="recordIdEqual != null">
+                and recordId = #{recordIdEqual}
+            </if>
+            <if test="recordIdLessThan != null">
+                and recordId &lt;= #{recordIdLessThan}
+            </if>
+            <if test="recordIdGreaterThan != null">
+                and recordId &gt;= #{recordIdGreaterThan}
+            </if>
+            <if test="recordIdLike != null">
+                and recordId like #{recordIdLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+
+</mapper>

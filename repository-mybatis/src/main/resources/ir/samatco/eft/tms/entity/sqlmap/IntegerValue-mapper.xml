@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="IntegerValue">
+    <select id="customList" parameterType="ir.samatco.eft.tms.entity.AccessValue"
+            resultType="ir.samatco.eft.tms.entity.IntegerValue">
+        select * from integervalue where accessId = #{id};
+    </select>
+    <select id="list" parameterType="long" resultType="ir.samatco.eft.tms.entity.IntegerValue">
+        select * from integervalue where accessId = #{param};
+    </select>
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.IntegerValue">
+        insert into integervalue(id, name, value,accessId) VALUES (#{id}, #{name},#{value},#{accessId});
+    </insert>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.IntegerValue">
+        select * from integervalue where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from integervalue where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from integervalue;
+    </select>
+
+</mapper>

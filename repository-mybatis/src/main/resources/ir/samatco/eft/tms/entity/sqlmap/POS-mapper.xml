@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="POS">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.POS">
+        insert into pos(id, serialNumber, assetNumber,terminalNumber) VALUES (#{id}, #{serialNumber}, #{assetNumber},
+        #{terminalNumber});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from pos
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="serialNumberEqual != null">
+                and serialNumber = #{serialNumberEqual}
+            </if>
+            <if test="serialNumberLessThan != null">
+                and serialNumber &lt;= #{serialNumberLessThan}
+            </if>
+            <if test="serialNumberGreaterThan != null">
+                and serialNumber &gt;= #{serialNumberGreaterThan}
+            </if>
+            <if test="serialNumberLike != null">
+                and serialNumber like #{serialNumberLike}
+            </if>
+
+            <if test="assetNumberEqual != null">
+                and assetNumber = #{assetNumberEqual}
+            </if>
+            <if test="assetNumberLessThan != null">
+                and assetNumber &lt;= #{assetNumberLessThan}
+            </if>
+            <if test="assetNumberGreaterThan != null">
+                and assetNumber &gt;= #{assetNumberGreaterThan}
+            </if>
+            <if test="assetNumberLike != null">
+                and assetNumber like #{assetNumberLike}
+            </if>
+
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.POS">
+        select * from pos where serialNumber= #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from pos where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from pos;
+    </select>
+    <select id="getMerchantId" resultType="long" parameterType="long">
+        select merchantId from terminal where terminalNumber = #{param}
+    </select>
+    <select id="checkPosSerianNumber" resultType="long" parameterType="long">
+        select count(*)terminalNumber from pos where assetNumber = #{param}
+    </select>
+    <select id="fetchByAssetNumber" resultType="long" parameterType="long">
+        select count(*) from pos where assetNumber= #{param}
+    </select>
+    <select id="fetchTerminalNumber" resultType="long" parameterType="long">
+        select terminalNumber from pos where assetNumber= #{param}
+    </select>
+
+    <select id="list" resultType="ir.samatco.eft.tms.entity.POS" parameterType="hashmap">
+        select * from pos
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="serialNumberEqual != null">
+                and serialNumber = #{serialNumberEqual}
+            </if>
+            <if test="serialNumberLessThan != null">
+                and serialNumber &lt;= #{serialNumberLessThan}
+            </if>
+            <if test="serialNumberGreaterThan != null">
+                and serialNumber &gt;= #{serialNumberGreaterThan}
+            </if>
+            <if test="serialNumberLike != null">
+                and serialNumber like #{serialNumberLike}
+            </if>
+
+            <if test="assetNumberEqual != null">
+                and assetNumber = #{assetNumberEqual}
+            </if>
+            <if test="assetNumberLessThan != null">
+                and assetNumber &lt;= #{assetNumberLessThan}
+            </if>
+            <if test="assetNumberGreaterThan != null">
+                and assetNumber &gt;= #{assetNumberGreaterThan}
+            </if>
+            <if test="assetNumberLike != null">
+                and assetNumber like #{assetNumberLike}
+            </if>
+
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.POS">
+        update pos
+        <set>
+            <if test="update.serialNumber">
+                serialNumber = #{serialNumber},
+            </if>
+            <if test="update.assetNumber">
+                assetNumber = #{assetNumber},
+            </if>
+            <if test="update.terminalNumber">
+                terminalNumber = #{terminalNumber},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+    <bean id="XmlconverterBean" class="ir.samatco.eft.tms.codec.XMLCodec"/>
+    <bean id="RawconverterBean" class="ir.samatco.eft.tms.codec.RawBytesCodec">
+        <constructor-arg value="6"/>
+    </bean>
+
+    <bean id="tmsPosServer" class="ir.samatco.eft.tms.pos.TmsPosServer">
+        <property name="codec" ref="XmlconverterBean"/>
+        <property name="projectRepository" ref="projectRepository"/>
+    </bean>
+</beans>

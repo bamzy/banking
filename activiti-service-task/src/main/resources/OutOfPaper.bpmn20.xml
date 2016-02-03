@@ -1,0 +1,37 @@
+<definitions id="definitions"
+             targetNamespace="http://activiti.org/bpmn20"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL">
+
+	<process id="outOfPaper" name="a POS terminal is out of paper, paper should be supplied">
+		<startEvent id="theStart"/>
+		<sequenceFlow id='flow1' sourceRef='theStart' targetRef='assign'/>
+		<userTask id="assign" name="assign task to a user" activiti:candidateGroups="admin">
+			<documentation>
+				Admins should assign the task to be done by another group of users.
+			</documentation>
+		</userTask>
+		<sequenceFlow id='flow2' sourceRef='assign' targetRef='javaService'/>
+		<serviceTask id="javaService" name="Notify By SMS"
+		             activiti:class="ir.samatco.eft.tms.requestmanagement.NotifyBySMS"/>
+		<sequenceFlow id='flow3' sourceRef='javaService' targetRef='maintainerResponse'/>
+		<userTask id="maintainerResponse" name="user confirms that the task is done"
+		          activiti:assignee="${assignee}">
+			<documentation>
+				after the out of paper problem of a POS is resolved, the user confirms that the process is
+				done.
+			</documentation>
+		</userTask>
+		<sequenceFlow id='flow4' sourceRef='maintainerResponse' targetRef='assign'>
+			<conditionExpression>${response.equals("reject")}</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id='flow5' sourceRef='maintainerResponse' targetRef='confirmed'>
+			<conditionExpression>${response.equals("confirm")}</conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow id='flow6' sourceRef='maintainerResponse' targetRef='noFix'>
+			<conditionExpression>${response.equals("noFix")}</conditionExpression>
+		</sequenceFlow>
+		<endEvent id="confirmed"/>
+		<endEvent id="noFix"/>
+	</process>
+</definitions>

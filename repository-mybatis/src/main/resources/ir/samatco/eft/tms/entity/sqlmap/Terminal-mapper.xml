@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Terminal">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Terminal">
+        insert into terminal(terminalNumber, status, active,
+        startupDate,description,maxPasswordLength,lastVisit,nextVisit,merchantId,groupId,terminalTypeId ) VALUES
+        (#{terminalNumber},
+        #{status}, #{active},
+        #{startupDate},#{description},#{maxPasswordLength},#{lastVisit},#{nextVisit},#{merchantId},#{groupId},
+        #{terminalTypeId});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from terminal
+        <where>
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="terminalTypeIdEqual != null">
+                and terminalTypeId = #{terminalTypeIdEqual}
+            </if>
+            <if test="terminalTypeIdLessThan != null">
+                and terminalTypeId &lt;= #{terminalTypeIdLessThan}
+            </if>
+            <if test="terminalTypeIdGreaterThan != null">
+                and terminalTypeId &gt;= #{terminalTypeIdGreaterThan}
+            </if>
+            <if test="terminalTypeIdLike != null">
+                and terminalTypeId like #{terminalTypeIdLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+
+            <if test="activeEqual != null">
+                and active = #{activeEqual}
+            </if>
+            <if test="activeLessThan != null">
+                and active &lt;= #{activeLessThan}
+            </if>
+            <if test="activeGreaterThan != null">
+                and active &gt;= #{activeGreaterThan}
+            </if>
+            <if test="activeLike != null">
+                and active like #{activeLike}
+            </if>
+
+            <if test="startupDateEqual != null">
+                and startupDate = #{startupDateEqual}
+            </if>
+            <if test="startupDateLessThan != null">
+                and startupDate &lt;= #{startupDateLessThan}
+            </if>
+            <if test="startupDateGreaterThan != null">
+                and startupDate &gt;= #{startupDateLessThan}
+            </if>
+            <if test="startupDateLike != null">
+                and startupDate like #{startupDateLessThan}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="groupIdEqual != null">
+                and groupId = #{groupIdEqual}
+            </if>
+            <if test="groupIdLessThan != null">
+                and groupId &lt;= #{groupIdLessThan}
+            </if>
+            <if test="groupIdGreaterThan != null">
+                and groupId &gt;= #{groupIdGreaterThan}
+            </if>
+            <if test="groupIdLike != null">
+                and groupId like #{groupIdLike}
+            </if>
+
+            <if test="merchantIdEqual != null">
+                and merchantId = #{merchantIdEqual}
+            </if>
+            <if test="merchantIdLessThan != null">
+                and merchantId &lt;= #{merchantIdLessThan}
+            </if>
+            <if test="merchantIdGreaterThan != null">
+                and merchantId &gt;= #{merchantIdGreaterThan}
+            </if>
+            <if test="merchantIdLike != null">
+                and merchantId like #{merchantIdLike}
+            </if>
+
+            <if test="nextVisitEqual != null">
+                and nextVisit = #{nextVisitEqual}
+            </if>
+            <if test="nextVisitLessThan != null">
+                and nextVisit &lt;= #{nextVisitLessThan}
+            </if>
+            <if test="nextVisitGreaterThan != null">
+                and nextVisit &gt;= #{nextVisitGreaterThan}
+            </if>
+            <if test="nextVisitLike != null">
+                and nextVisit like #{nextVisitLike}
+            </if>
+
+            <if test="lastVisitEqual != null">
+                and lastVisit = #{lastVisitEqual}
+            </if>
+            <if test="lastVisitLessThan != null">
+                and lastVisit &lt;= #{lastVisitLessThan}
+            </if>
+            <if test="lastVisitGreaterThan != null">
+                and lastVisit &gt;= #{lastVisitGreaterThan}
+            </if>
+            <if test="lastVisitLike != null">
+                and lastVisit like #{lastVisitLike}
+            </if>
+
+            <if test="maxPasswordLengthEqual != null">
+                and maxPasswordLength = #{maxPasswordLengthEqual}
+            </if>
+            <if test="maxPasswordLengthLessThan != null">
+                and maxPasswordLength &lt;= #{maxPasswordLengthLessThan}
+            </if>
+            <if test="maxPasswordLengthGreaterThan != null">
+                and maxPasswordLength &gt;= #{maxPasswordLengthGreaterThan}
+            </if>
+            <if test="maxPasswordLengthLike != null">
+                and maxPasswordLength like #{maxPasswordLengthLike}
+            </if>
+        </where>
+    </select>
+    <update id="updateLastVisit" parameterType="ir.samatco.eft.tms.entity.Terminal">
+        update terminal set lastVisit = #{lastVisit}, nextVisit = #{nextVisit} where terminalNumber = #{terminalNumber}
+    </update>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Terminal">
+        select * from terminal where terminalNumber = #{param};
+    </select>
+    <select id="listNextVisits" parameterType="ir.samatco.eft.tms.entity.Duration"
+            resultType="ir.samatco.eft.tms.entity.NextVisit">
+        SELECT terminalNumber,nextVisit FROM terminal WHERE nextVisit BETWEEN #{from} AND #{to}
+        AND nextVisit IS NOT NULL
+        order by nextVisit;
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from terminal where terminalNumber = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(terminalNumber) from terminal;
+    </select>
+    <select id="isBanned" parameterType="long" resultType="boolean">
+        select active from terminal where terminalNumber = #{param};
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Terminal" parameterType="hashmap">
+        select * from terminal
+        <where>
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="terminalTypeIdEqual != null">
+                and terminalTypeId = #{terminalTypeIdEqual}
+            </if>
+            <if test="terminalTypeIdLessThan != null">
+                and terminalTypeId &lt;= #{terminalTypeIdLessThan}
+            </if>
+            <if test="terminalTypeIdGreaterThan != null">
+                and terminalTypeId &gt;= #{terminalTypeIdGreaterThan}
+            </if>
+            <if test="terminalTypeIdLike != null">
+                and terminalTypeId like #{terminalTypeIdLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+
+            <if test="activeEqual != null">
+                and active = #{activeEqual}
+            </if>
+            <if test="activeLessThan != null">
+                and active &lt;= #{activeLessThan}
+            </if>
+            <if test="activeGreaterThan != null">
+                and active &gt;= #{activeGreaterThan}
+            </if>
+            <if test="activeLike != null">
+                and active like #{activeLike}
+            </if>
+
+            <if test="startupDateEqual != null">
+                and startupDate = #{startupDateEqual}
+            </if>
+            <if test="startupDateLessThan != null">
+                and startupDate &lt;= #{startupDateLessThan}
+            </if>
+            <if test="startupDateGreaterThan != null">
+                and startupDate &gt;= #{startupDateLessThan}
+            </if>
+            <if test="startupDateLike != null">
+                and startupDate like #{startupDateLessThan}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="groupIdEqual != null">
+                and groupId = #{groupIdEqual}
+            </if>
+            <if test="groupIdLessThan != null">
+                and groupId &lt;= #{groupIdLessThan}
+            </if>
+            <if test="groupIdGreaterThan != null">
+                and groupId &gt;= #{groupIdGreaterThan}
+            </if>
+            <if test="groupIdLike != null">
+                and groupId like #{groupIdLike}
+            </if>
+
+            <if test="merchantIdEqual != null">
+                and merchantId = #{merchantIdEqual}
+            </if>
+            <if test="merchantIdLessThan != null">
+                and merchantId &lt;= #{merchantIdLessThan}
+            </if>
+            <if test="merchantIdGreaterThan != null">
+                and merchantId &gt;= #{merchantIdGreaterThan}
+            </if>
+            <if test="merchantIdLike != null">
+                and merchantId like #{merchantIdLike}
+            </if>
+
+            <if test="nextVisitEqual != null">
+                and nextVisit = #{nextVisitEqual}
+            </if>
+            <if test="nextVisitLessThan != null">
+                and nextVisit &lt;= #{nextVisitLessThan}
+            </if>
+            <if test="nextVisitGreaterThan != null">
+                and nextVisit &gt;= #{nextVisitGreaterThan}
+            </if>
+            <if test="nextVisitLike != null">
+                and nextVisit like #{nextVisitLike}
+            </if>
+
+            <if test="lastVisitEqual != null">
+                and lastVisit = #{lastVisitEqual}
+            </if>
+            <if test="lastVisitLessThan != null">
+                and lastVisit &lt;= #{lastVisitLessThan}
+            </if>
+            <if test="lastVisitGreaterThan != null">
+                and lastVisit &gt;= #{lastVisitGreaterThan}
+            </if>
+            <if test="lastVisitLike != null">
+                and lastVisit like #{lastVisitLike}
+            </if>
+
+            <if test="maxPasswordLengthEqual != null">
+                and maxPasswordLength = #{maxPasswordLengthEqual}
+            </if>
+            <if test="maxPasswordLengthLessThan != null">
+                and maxPasswordLength &lt;= #{maxPasswordLengthLessThan}
+            </if>
+            <if test="maxPasswordLengthGreaterThan != null">
+                and maxPasswordLength &gt;= #{maxPasswordLengthGreaterThan}
+            </if>
+            <if test="maxPasswordLengthLike != null">
+                and maxPasswordLength like #{maxPasswordLengthLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+
+    </select>
+    <select id="fetchTerminalGroupId" resultType="long" parameterType="long">
+        select groupId from terminal where terminalNumber= #{param}
+    </select>
+    <select id="fetchTerminalMerchantId" resultType="long" parameterType="long">
+        select merchantId from terminal where terminalNumer= #{param}
+    </select>
+    <update id="customUpdate" parameterType="ir.samatco.eft.tms.entity.Terminal">
+        update terminal
+        set  status=#{status}, active=#{active},
+        startupDate=#{startupDate},description=#{description},maxPasswordLength=#{maxPasswordLength},lastVisit=#{lastVisit},nextVisit=#{nextVisit},merchantId=#{merchantId},groupId=#{groupId},terminalTypeId=#{terminalTypeId}
+        where terminalNumber = #{terminalNumber};
+    </update>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Terminal">
+        update terminal
+        <set>
+            <if test="update.status">
+                status = #{status},
+            </if>
+            <if test="update.active">
+                active = #{active},
+            </if>
+            <if test="update.description">
+                description = #{description},
+            </if>
+            <if test="update.maxPasswordLength">
+                maxPasswordLength = #{maxPasswordLength},
+            </if>
+            <if test="update.terminalTypeId">
+                terminalTypeId = #{terminalTypeId},
+            </if>
+            <if test="update.nextVisit">
+                nextVisit = #{nextVisit},
+            </if>
+            <if test="update.groupId">
+                groupId = #{groupId},
+            </if>
+        </set>
+        where terminalNumber = #{id};
+    </update>
+
+
+</mapper>

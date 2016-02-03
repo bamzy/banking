@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PluginTemplate">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.PluginTemplate">
+        insert into plugintemplate(id, title,name, description, version,content) VALUES (#{id}, #{title},#{name},
+        #{description},
+        #{version},#{content});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from plugintemplate
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="titleEqual != null">
+                and title = #{titleEqual}
+            </if>
+            <if test="titleLessThan != null">
+                and title &lt;= #{titleLessThan}
+            </if>
+            <if test="titleGreaterThan != null">
+                and title &gt;= #{titleGreaterThan}
+            </if>
+            <if test="titleLike != null">
+                and title like #{titleLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+
+            <if test="contentEqual != null">
+                and content = #{contentEqual}
+            </if>
+            <if test="contentLessThan != null">
+                and content &lt;= #{contentLessThan}
+            </if>
+            <if test="contentGreaterThan != null">
+                and content &gt;= #{contentGreaterThan}
+            </if>
+            <if test="contentLike != null">
+                and content like #{contentLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.PluginTemplate">
+        select * from plugintemplate where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from plugintemplate where id = #{param};
+    </delete>
+    <select id="fetchPosPlugins" parameterType="long" resultType="ir.samatco.eft.tms.xml.XmlPlugin">
+        SELECT plugin.name AS `name`,plugintemplate.`title` AS `title`, plugintemplate.`content` AS content,
+        plugintemplate.`version` AS `version`, plugin.`pluginvalues` AS pluginvalues
+        FROM terminalgroup_plugin,plugin,plugintemplate
+        WHERE terminalgroupId = #{param}
+        AND terminalgroup_plugin.pluginId = plugin.id
+        AND plugin.plugintemplateId = plugintemplate.id;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.PluginTemplate" parameterType="hashmap">
+        select * from plugintemplate
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="titleEqual != null">
+                and title = #{titleEqual}
+            </if>
+            <if test="titleLessThan != null">
+                and title &lt;= #{titleLessThan}
+            </if>
+            <if test="titleGreaterThan != null">
+                and title &gt;= #{titleGreaterThan}
+            </if>
+            <if test="titleLike != null">
+                and title like #{titleLike}
+            </if>
+
+            <if test="nameEqual != null">
+                and name = #{nameEqual}
+            </if>
+            <if test="nameLessThan != null">
+                and name &lt;= #{nameLessThan}
+            </if>
+            <if test="nameGreaterThan != null">
+                and name &gt;= #{nameGreaterThan}
+            </if>
+            <if test="nameLike != null">
+                and name like #{nameLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="versionEqual != null">
+                and version = #{versionEqual}
+            </if>
+            <if test="versionLessThan != null">
+                and version &lt;= #{versionLessThan}
+            </if>
+            <if test="versionGreaterThan != null">
+                and version &gt;= #{versionGreaterThan}
+            </if>
+            <if test="versionLike != null">
+                and version like #{versionLike}
+            </if>
+
+
+            <if test="contentEqual != null">
+                and content = #{contentEqual}
+            </if>
+            <if test="contentLessThan != null">
+                and content &lt;= #{contentLessThan}
+            </if>
+            <if test="contentGreaterThan != null">
+                and content &gt;= #{contentGreaterThan}
+            </if>
+            <if test="contentLike != null">
+                and content like #{contentLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from plugintemplate;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.PluginTemplate">
+        update pos
+        <set>
+            <if test="update.title">
+                title = #{title},
+            </if>
+            <if test="update.description">
+                description = #{description},
+            </if>
+            <if test="update.version">
+                version = #{version},
+            </if>
+            <if test="update.content">
+                content = #{content},
+            </if>
+            <if test="update.name">
+                name = #{name},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

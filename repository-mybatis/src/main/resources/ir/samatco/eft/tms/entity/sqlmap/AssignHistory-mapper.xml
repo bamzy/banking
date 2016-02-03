@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AssignHistory">
+
+
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.AssignHistory">
+        insert into assignhistory (id,security_activeUserPath,requestId,operatorPath, description,timeStamp) VALUES
+        (#{id},#{security_activeUserPath},#{requestId},#{operatorPath},#{description},#{timeStamp}) ;
+
+    </insert>
+    <delete id="delete" parameterType="long">
+        delete from assignhistory where id = #{param};
+    </delete>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.AssignHistory">
+        update request set operatorPath = #{operatorPath} where id=#{requestId};
+    </update>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.AssignHistory">
+        select * from assignhistory where id = #{param};
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from assignhistory;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.AssignHistory" parameterType="hashmap">
+        select * from assignhistory
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="requestIdEqual != null">
+                and requestId = #{requestIdEqual}
+            </if>
+            <if test="requestIdLessThan != null">
+                and requestId &lt;= #{requestIdLessThan}
+            </if>
+            <if test="requestIdGreaterThan != null">
+                and requestId &gt;= #{requestIdGreaterThan}
+            </if>
+            <if test="requestIdLike != null">
+                and requestId like #{requestIdLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+
+
+            <if test="operatorPathEqual != null">
+                and operatorPath = #{operatorPathEqual}
+            </if>
+            <if test="operatorPathLessThan != null">
+                and operatorPath &lt;= #{operatorPathLessThan}
+            </if>
+            <if test="operatorPathGreaterThan != null">
+                and operatorPath &gt;= #{operatorPathGreaterThan}
+            </if>
+            <if test="operatorPathLike != null">
+                and operatorPath like #{operatorPathLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from assignhistory
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="requestIdEqual != null">
+                and requestId = #{requestIdEqual}
+            </if>
+            <if test="requestIdLessThan != null">
+                and requestId &lt;= #{requestIdLessThan}
+            </if>
+            <if test="requestIdGreaterThan != null">
+                and requestId &gt;= #{requestIdGreaterThan}
+            </if>
+            <if test="requestIdLike != null">
+                and requestId like #{requestIdLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="security_activeUserPathEqual != null">
+                and security_activeUserPath = #{security_activeUserPathEqual}
+            </if>
+            <if test="security_activeUserPathLessThan != null">
+                and security_activeUserPath &lt;= #{security_activeUserPathLessThan}
+            </if>
+            <if test="security_activeUserPathGreaterThan != null">
+                and security_activeUserPath &gt;= #{security_activeUserPathGreaterThan}
+            </if>
+            <if test="security_activeUserPathLike != null">
+                and security_activeUserPath like #{security_activeUserPathLike}
+            </if>
+
+
+            <if test="operatorPathEqual != null">
+                and operatorPath = #{operatorPathEqual}
+            </if>
+            <if test="operatorPathLessThan != null">
+                and operatorPath &lt;= #{operatorPathLessThan}
+            </if>
+            <if test="operatorPathGreaterThan != null">
+                and operatorPath &gt;= #{operatorPathGreaterThan}
+            </if>
+            <if test="operatorPathLike != null">
+                and operatorPath like #{operatorPathLike}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

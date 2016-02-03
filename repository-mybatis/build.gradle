@@ -1,0 +1,24 @@
+description = ''
+
+dependencies {
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.2.2'
+    compile project(':event-core')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.21'
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.googlecode.flyway:flyway-gradle-plugin:2.2"
+    }
+}
+
+apply plugin: 'flyway'
+
+flyway {
+    url = 'jdbc:mysql://tms/tms_db'
+    user = 'bamdad'
+    password = 'root'
+    schemas = ['tms_db']
+}

@@ -1,0 +1,27 @@
+apply plugin: "maven-publish"
+
+
+publishing {
+    repositories {
+        maven() {
+            credentials {
+                username project.nexus_user
+                password project.nexus_pass
+            }
+            url "http://samat-server.devsamat.ir:8080/nexus/content/repositories/releases/"
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            if (tasks.findByPath('distTar') != null) {
+                artifact distTar { classifier 'dist' }
+            }
+            if (tasks.findByPath('migrateTar') != null) {
+                artifact migrateTar { classifier 'migrate' }
+            }
+        }
+    }
+}

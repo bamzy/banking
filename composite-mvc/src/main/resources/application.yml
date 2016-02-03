@@ -1,0 +1,34 @@
+---
+spring:
+  datasource:
+    url: "jdbc:mysql://qezel-server:3311/tms?characterEncoding=utf8"
+    username: root
+    password: salam
+    validationQuery: SELECT 1
+    testOnBorrow: true
+server:
+  port: 8080
+service:
+  registered:
+    name: 192.168.2.65
+zookeeper:
+  server:
+    address: qezel-server
+  tms:
+    property: tms
+logging:
+  level:
+    org: INFO
+---
+spring:
+  profiles: production
+  datasource:
+    url: "jdbc:mysql://eft-tms-db.node.internal.qezel/tms?characterEncoding=utf8"
+zookeeper:
+  server:
+    address: eft-zookeeper.node.internal.qezel
+service:
+  registered:
+    name: eft-tms.node.internal.qezel
+flyway:
+  enabled: false

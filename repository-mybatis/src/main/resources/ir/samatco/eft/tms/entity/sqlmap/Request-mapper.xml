@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Request">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Request">
+        insert into request(terminalNumber, date, type, description,status,id,operatorPath) VALUES (#{terminalNumber},
+        #{date},
+        #{type}, #{description},#{status},#{id},#{operatorPath});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from request
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="dateEqual != null">
+                and date = #{dateEqual}
+            </if>
+            <if test="dateLessThan != null">
+                and date &lt;= #{dateLessThan}
+            </if>
+            <if test="dateGreaterThan != null">
+                and date &gt;= #{dateGreaterThan}
+            </if>
+            <if test="dateLike != null">
+                and date like #{dateLike}
+            </if>
+
+            <if test="typeEqual != null">
+                and type = #{typeEqual}
+            </if>
+            <if test="typeLessThan != null">
+                and type &lt;= #{typeLessThan}
+            </if>
+            <if test="typeGreaterThan != null">
+                and type &gt;= #{typeGreaterThan}
+            </if>
+            <if test="typeLike != null">
+                and type like #{typeLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+
+            <if test="operatorPathEqual != null">
+                and operatorPath = #{operatorPathEqual}
+            </if>
+            <if test="operatorPathLessThan != null">
+                and operatorPath &lt;= #{operatorPathLessThan}
+            </if>
+            <if test="operatorPathGreaterThan != null">
+                and operatorPath &gt;= #{operatorPathGreaterThan}
+            </if>
+            <if test="operatorPathLike != null">
+                and operatorPath like #{operatorPathLike}
+            </if>
+        </where>
+    </select>
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Request">
+        select * from request where id = #{param};
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from request where id = #{param};
+    </delete>
+    <select id="getMaxId" resultType="long">
+        select max(id) from request;
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Request" parameterType="hashmap">
+        select * from request
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="dateEqual != null">
+                and date = #{dateEqual}
+            </if>
+            <if test="dateLessThan != null">
+                and date &lt;= #{dateLessThan}
+            </if>
+            <if test="dateGreaterThan != null">
+                and date &gt;= #{dateGreaterThan}
+            </if>
+            <if test="dateLike != null">
+                and date like #{dateLike}
+            </if>
+
+            <if test="typeEqual != null">
+                and type = #{typeEqual}
+            </if>
+            <if test="typeLessThan != null">
+                and type &lt;= #{typeLessThan}
+            </if>
+            <if test="typeGreaterThan != null">
+                and type &gt;= #{typeGreaterThan}
+            </if>
+            <if test="typeLike != null">
+                and type like #{typeLike}
+            </if>
+
+            <if test="descriptionEqual != null">
+                and description = #{descriptionEqual}
+            </if>
+            <if test="descriptionLessThan != null">
+                and description &lt;= #{descriptionLessThan}
+            </if>
+            <if test="descriptionGreaterThan != null">
+                and description &gt;= #{descriptionGreaterThan}
+            </if>
+            <if test="descriptionLike != null">
+                and description like #{descriptionLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+
+            <if test="operatorPathEqual != null">
+                and operatorPath = #{operatorPathEqual}
+            </if>
+            <if test="operatorPathLessThan != null">
+                and operatorPath &lt;= #{operatorPathLessThan}
+            </if>
+            <if test="operatorPathGreaterThan != null">
+                and operatorPath &gt;= #{operatorPathGreaterThan}
+            </if>
+            <if test="operatorPathLike != null">
+                and operatorPath like #{operatorPathLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Request">
+        update request
+        <set>
+            <if test="update.operatorPath">
+                operatorPath = #{operatorPath},
+            </if>
+            <if test="update.status">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>

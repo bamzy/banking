@@ -1,0 +1,18 @@
+<mapping>
+    <class configName="ir.samatco.eft.tms.xml.CustomInfo">
+
+        <map-to xml="info"/>
+
+        <field configName="configName" type="string">
+            <bind-xml configName="configName" node="attribute"/>
+        </field>
+
+        <field configName="id" type="long">
+            <bind-xml configName="id" node="element"/>
+        </field>
+
+        <field configName="valid" type="boolean">
+            <bind-xml configName="valid" node="element"/>
+        </field>
+    </class>
+</mapping>

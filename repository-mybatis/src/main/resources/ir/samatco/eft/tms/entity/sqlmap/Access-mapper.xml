@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Access">
+    <insert id="insert" parameterType="ir.samatco.eft.tms.entity.Access">
+        insert into access(id, terminalNumber,timeStamp,accessType,nightCode,status) VALUES (#{id}, #{terminalNumber},
+        #{timeStamp}, #{accessType},#{nightCode},#{status});
+    </insert>
+    <select id="count" resultType="long" parameterType="hashmap">
+        select count(*) from access
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="accessTypeEqual != null">
+                and accessType = #{accessTypeEqual}
+            </if>
+            <if test="accessTypeLessThan != null">
+                and accessType &lt;= #{accessTypeLessThan}
+            </if>
+            <if test="accessTypeGreaterThan != null">
+                and accessType &gt;= #{accessTypeGreaterThan}
+            </if>
+            <if test="accessTypeLike != null">
+                and accessType like #{accessTypeLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+        </where>
+    </select>
+
+    <select id="select" parameterType="long" resultType="ir.samatco.eft.tms.entity.Access">
+        select * from access where id = #{param};
+    </select>
+    <select id="getMaxId" resultType="long">
+        select max(id) from access;
+    </select>
+    <select id="getLastTerminalAccess" parameterType="long" resultType="ir.samatco.eft.tms.entity.Access">
+        select * from access where terminalNumber=#{param} order by `timeStamp` DESC limit 1;
+    </select>
+    <select id="getTerminalAccessWithTimestamp" parameterType="ir.samatco.eft.tms.entity.Access"
+            resultType="ir.samatco.eft.tms.entity.Access">
+        select * from access where terminalNumber=#{terminalNumber} and `timeStamp`=#{timeStamp} order by `timeStamp`
+        DESC limit 1;
+    </select>
+    <delete id="delete" parameterType="long">
+        delete from access where id = #{param};
+    </delete>
+    <update id="update" parameterType="ir.samatco.eft.tms.entity.Access">
+        update access
+        <set>
+            <if test="update.status">
+                status = #{status},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+    <update id="customUpdate" parameterType="ir.samatco.eft.tms.entity.Access">
+    update access set timeStamp=#{timeStamp} , accessType=#{accessType} , nightCode=#{nightCode},terminalNumber=#{terminalNumber},status=#{status}
+    where id = #{id};
+    </update>
+    <select id="checkNightCode" parameterType="string" resultType="long">
+        SELECT COUNT(*) FROM access WHERE nightCode=#{param};
+    </select>
+    <select id="fetchLastVisitTime" parameterType="ir.samatco.eft.tms.entity.Access" resultType="long">
+        SELECT MAX(timeStamp) FROM access WHERE accessType=#{accessType} and terminalNumber=#{terminalNumber} and
+        status=#{status};
+    </select>
+    <select id="list" resultType="ir.samatco.eft.tms.entity.Access" parameterType="hashmap">
+        select * from access
+        <where>
+            <if test="idEqual != null">
+                and id = #{idEqual}
+            </if>
+            <if test="idLessThan != null">
+                and id &lt;= #{idLessThan}
+            </if>
+            <if test="idGreaterThan != null">
+                and id &gt;= #{idGreaterThan}
+            </if>
+            <if test="idLike != null">
+                and id like #{idLike}
+            </if>
+
+            <if test="terminalNumberEqual != null">
+                and terminalNumber = #{terminalNumberEqual}
+            </if>
+            <if test="terminalNumberLessThan != null">
+                and terminalNumber &lt;= #{terminalNumberLessThan}
+            </if>
+            <if test="terminalNumberGreaterThan != null">
+                and terminalNumber &gt;= #{terminalNumberGreaterThan}
+            </if>
+            <if test="terminalNumberLike != null">
+                and terminalNumber like #{terminalNumberLike}
+            </if>
+
+            <if test="timeStampEqual != null">
+                and timeStamp = #{timeStampEqual}
+            </if>
+            <if test="timeStampLessThan != null">
+                and timeStamp &lt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampGreaterThan != null">
+                and timeStamp &gt;= #{timeStampEqual}
+            </if>
+            <if test="timeStampLike != null">
+                and timeStamp like #{timeStampEqual}
+            </if>
+
+            <if test="accessTypeEqual != null">
+                and accessType = #{accessTypeEqual}
+            </if>
+            <if test="accessTypeLessThan != null">
+                and accessType &lt;= #{accessTypeLessThan}
+            </if>
+            <if test="accessTypeGreaterThan != null">
+                and accessType &gt;= #{accessTypeGreaterThan}
+            </if>
+            <if test="accessTypeLike != null">
+                and accessType like #{accessTypeLike}
+            </if>
+
+            <if test="statusEqual != null">
+                and status = #{statusEqual}
+            </if>
+            <if test="statusLessThan != null">
+                and status &lt;= #{statusLessThan}
+            </if>
+            <if test="statusGreaterThan != null">
+                and status &gt;= #{statusGreaterThan}
+            </if>
+            <if test="statusLike != null">
+                and status like #{statusLike}
+            </if>
+        </where>
+        order by
+        <if test="orderByField != null">
+            ${orderByField}
+        </if>
+        <if test="orderByDir != null">
+            ${orderByDir}
+        </if>;
+    </select>
+
+</mapper>
